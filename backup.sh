@@ -10,11 +10,11 @@ TIMESTAMPT=`date +%F-%H%M`
 BACKUP_FILE="$APP_NAME-$TIMESTAMPT"
 
 #Force file syncronization and lock writes
-# mongo admin --eval "printjson(db.fsyncLock())"
+mongo admin --eval "printjson(db.fsyncLock())"
 
 $MONGODUMP -h $MONGO_HOST:$MONGO_PORT -d $DB_NAME
 
-# mongo admin --eval "printjson(db.fsyncUnlock())"
+mongo admin --eval "printjson(db.fsyncUnlock())"
 
 mkdir $BACKUP_DIR
 mv dump $BACKUP_FILE
